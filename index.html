@@ -18,85 +18,15 @@
     <div id="time-left"></div>
     
     <div class="game">
-        <!-- <span id="game-question"></span>
-        <span id="game-answers"></span> -->
+        <span id="game-question"></span>
+        <span id="game-answers"></span>
     </div>
 
     <div class="results"></div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        //variables 
-        var questions = [];
-        var answers = [];
-        var correct = 0;
-        var incorrect = 0;
-        var unanswered = 0;
-        var timer = 10;
-        
-        //diplay timer
-        function startTimer() {
-            intervalId = setInterval (decrement,1000);
-        }
-
-        //timer countdown function 
-        //if timer=0sec, show results
-        function decrement() {
-            $("#time-left").html("<p>Time remaining: " + timer + " secs </p>");
-            timer --;
-                if (timer === 0) {
-                    stop() 
-                }
-        }
-
-        // function timer=0
-        function stop() {
-            clearInterval(intervalId);
-
-        }
-
-
-        //starts on the click of the button 
-        $(".start").on("click", function() {
-            $(".start").hide(); 
-            startTimer();
-            showQuestion();
-        });
-        
-        
-        //quiz 
-        //var containing all the questions 
-        var quizQuestions = [
-            {
-                question: "What is 1+1?",
-                answer: ["one", "two", "three"],
-                correct: 1,            
-            },
-            {
-                question: "What is 1x1?",
-                answer: ["one", "two", "three"],
-                correct: 0,
-            }
-        ];
-
-        //function to display the question and answer choices onto the page 
-            function showQuestion() {
-                for (var i=0; i<quizQuestions.length; i++) {
-                    $()
-                }
-
-                }
-            }
-// function that stores the results 
-// results 
-
-// when timer = 0secs or when done button is clicked 
-// returns the correct, incorrect and unanswered counts to the page 
-
-
-
-</script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 
 </body>
