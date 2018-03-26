@@ -1,95 +1,183 @@
+
 //variables to display when game starts, hold the questions and answers 
 var timer = 5;
-// var questions = [];
-// var answers = [];
+
+//variable for correct/incorrect answer page 
+var answerTimer = 5;
+
 //variable to display when timer reaches 0
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 
+//---------- START GAME --------
+$(document).ready(function() {
 
-//diplay timer
+
+//----------TIMER ----------
+//start timer
 function startTimer() {
-    intervalId = setInterval (decrement,500);
+    intervalId = setInterval (decrement,1000);
 }
 
 //timer countdown function 
 //if timer=0sec, show results
 function decrement() {
-   
     timer --;
     $("#time-left").html("<p>Time remaining: " + timer + " secs </p>");
     if (timer == 0) {
-            stop(); 
-            return
+            stop();
+            $("#time-left").hide();
+            $("#game-question").hide();
+            $("#game-answers").hide();
         }
-       
-    }
+}
 
 // function timer=0, show results, restart the game 
 function stop() {
-    clearInterval(intervalId);
-    
+    clearInterval(intervalId);  
 }
 
-
-//starts on the click of the button 
+//starts on the click of the button
 $(".start").on("click", function() {
     $(".start").hide(); 
     startTimer();
     showQuestion();
 });
 
-
-//quiz 
+//---------- QUIZ ------------- 
 //var containing all the questions 
 var quizQuestions = [
     {
         question: "What is 1+1?",
-        answer: ["one", "two", "three"],
+        // answers: ["one", "two", "three", "four"],
+        a: "one",
+        b: "two", 
+        c: "three",
+        d: "four",
         correct: "two",            
     },
     {
         question: "What is 1x1?",
-        answer: ["one", "two", "three"],
+        answers: ["one", "two", "three", "four"],
+        a: "one",
+        b: "two", 
+        c: "three",
+        d: "four",
         correct: "one",
     },
     {
         question: "What is 1+2?",
-        answer: ["one", "two", "three"],
+        // answers: ["one", "two", "three", "four"],
+        a: "one",
+        b: "two", 
+        c: "three",
+        d: "four",
         correct: "three",
     }
 ];
 
-//function to display the question 11-slide 
+
+// // CREATE BUTTONS
+function buttons() {
+    var newbutton = $("<input type, button>");
+    $("input type, button").class(button)
+    $("#game-answers").append(newbutton);
+}
+
+//--------- QUESTION AND ANSWER SLIDE ----------
+//function to display the question 11-slide
+//display choices onto the page, under each question 
 var counter=0;
+function showQuestion () {
+    $("#game-question").html("<p>" + quizQuestions[counter].question + "</p>")
+    console.log (quizQuestions[counter].question)
 
-    function showQuestion() {
-        // for (var i=0; i<quizQuestions.length; i++) {
-        //     console.log (quizQuestions[i].question);
-         $("#game-question").html("<p>" + quizQuestions[counter].question + "</p>")
-        }
-         console.log (quizQuestions[counter].question)
+    var newButton = $("<button>");
+    $("#a").html(quizQuestions[counter].a)
+    $("#b").html(quizQuestions[counter].b)
+    $("#c").html(quizQuestions[counter].c)
+    $("#d").html(quizQuestions[counter].d)
+}
 
-//function to display input type="radio"  choices onto the page, under each question
-    function showChoices() {
-        for (var j=0; j<quizQuestions.length; j++) {
-            console.log (quizQuestions[j].answer);
+
+        
+//             buttons ("a", quizQuestion.a);
+        // var choices = quizQuestions[counter].answers;
+        //     console.log (choices);
+        //         for (var i=0; i<choices.length; i++) {
+        //         $("#game-answers").html("<li>" + choices[i] + "</li>"); 
+        //         }
+
+
+    
+//         var choices = quizQuestions[counter].answers;
+//         var choicesButton = [];
+//             for (var i=0; i<choices.length; i++) {
+//                 var list = $("<li>");
+//                 $("li").html(choices[i]);
+//                 $("#game-answers").append(list);
+//     }
+// }
+    // function showChoices() {
+    //     
+    // } 
+
+    // function showChoices() {
+    //     var choices = $("#game-answers");
+    //     for (var i=0; i<quizQuestions[counter].answer.length; i++) {
+    //          var newChoices = ("<p>" + choices + "</p>");
+    //          choices.append(newChoices);
+    //     }
+    // }
+
+    // function showChoices() {
+    //     $("#a").html("<button>" + quizQuestions[counter].answer[0] + "</button>")
+    // }
+
+
+
+})
+
+
+
+           
+        
+         
+    // var choices = $("#game-answers");
+    //     for (var i=0; i<quizQuestions[counter].answer.length; i++) {
+    //          var newChoices = ("<p>" + choices + "</p>");
+    //          choices.append(newChoices);
+        
+    
+//display right or wrong 
+// function answerPage() {
+//     countDown();
+//     if (user ==)
+// }
+         
+// var countDown = function() {
+//     count--;
+// }
+
+
+            // var answers = $("<div>");
+ 
+                   // $("#game-answers").text(
             
 
-        }
-            
-    }
+
+
 
 //if time=0 or onclickfunvtion
 //start newtimer 
-//display right or wrong 
+
 //stop newtimer
 //counter++
 //hide
  
 
-showQuestion();
+// showQuestion();
 
 //counter = .length
 //total results 
