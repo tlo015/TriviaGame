@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../images/background.jpeg);
+    background-size: 100%;
+}
+
+
+.navbar{
+    background: rgba(255, 255, 255, 0.75);
+    padding: 50px;
+}
+
+img {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.section{
+    background: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    height: 300px;
+    margin-top: 75px;
+    padding-top: 50px;
+}
+
+.start{
+    font-weight: 25px;
+}

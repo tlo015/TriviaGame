@@ -4,53 +4,53 @@ var quizQuestions = [
     {
         question: "How did Viserys Targaryen die?",
         answers: ["Stabbed in the heart", "With a melted golden crown", "Beheading", "Burned alive"],
-        correct: "With a melted golden crown",            
+        correct: 1,            
     },
     {
         question: "Who created the White Walkers?",
         answers: ["The First Men", "The Three-Eyed Raven", "The Wildlings", "The Children Of The Forest"],
         correct: "The Children Of The Forest",
-    },
-    {
-        question: "What is the only thing that can put out volatile Wildfire?",
-        answers: ["Sand", "Water", "Dragon's blood", "Sunlight"],
-        correct: "Sand",
-    },
-    {
-        question: "The Night King was created using a dagger made of:",
-        answers: ["Blue Ice", "Obsidian", "Valyrian Steel", "Dragonglass"],
-        correct: "Dragonglass",
-    },
-    {
-        question: "How many times has Beric Dondarrion been brought back to life?",
-        answers: ["Three times", "Five Times", "Six TImes", "Seven TImes"],
-        correct: "Six Times",
-    },
-    {
-        question: "Which Stark family direwolf was killed in retaliation for an attack on Prince Joffrey?",
-        answers: ["Ghost", "Lady", "Nymeria", "Summer"],
-        correct: "Lady",
-    },
-    {
-        question: "What was the name of Ned Stark's greatsword?",
-        answers: ["Ice", "Northguard", "Oathkeeper", "Widow's Wail"],
-        correct: "Ice",
-    },
-    {
-        question: "Prince Oberyn Martell is nicknamed the 'Red Viper' because of his combat and:",
-        answers: ["Pride in drawing first blood", " Knowledge in poisons", "Nighttime attacks", "Ruby-colored armor"],
-        correct: "Knowledge of poisons",
-    },
-    {
-        question: "How many arrows does Ramsay Bolton let loose at Rickon Stark?",
-        answers: ["Three", "Five", "Two", "Four"],
-        correct: "Four",
-    },
-    {
-        question: "In which territory is Mance Rayder recognized as king?",
-        answers: ["King's Landing", "Westeros", "House Tyrell", "Beyond the Wall"],
-        correct: "Beyond the Wall",
-    },
+    }
+    // {
+    //     question: "What is the only thing that can put out volatile Wildfire?",
+    //     answers: ["Sand", "Water", "Dragon's blood", "Sunlight"],
+    //     correct: "Sand",
+    // },
+    // {
+    //     question: "The Night King was created using a dagger made of:",
+    //     answers: ["Blue Ice", "Obsidian", "Valyrian Steel", "Dragonglass"],
+    //     correct: "Dragonglass",
+    // },
+    // {
+    //     question: "How many times has Beric Dondarrion been brought back to life?",
+    //     answers: ["Three times", "Five Times", "Six TImes", "Seven TImes"],
+    //     correct: "Six Times",
+    // },
+    // {
+    //     question: "Which Stark family direwolf was killed in retaliation for an attack on Prince Joffrey?",
+    //     answers: ["Ghost", "Lady", "Nymeria", "Summer"],
+    //     correct: "Lady",
+    // },
+    // {
+    //     question: "What was the name of Ned Stark's greatsword?",
+    //     answers: ["Ice", "Northguard", "Oathkeeper", "Widow's Wail"],
+    //     correct: "Ice",
+    // },
+    // {
+    //     question: "Prince Oberyn Martell is nicknamed the 'Red Viper' because of his combat and:",
+    //     answers: ["Pride in drawing first blood", " Knowledge in poisons", "Nighttime attacks", "Ruby-colored armor"],
+    //     correct: "Knowledge of poisons",
+    // },
+    // {
+    //     question: "How many arrows does Ramsay Bolton let loose at Rickon Stark?",
+    //     answers: ["Three", "Five", "Two", "Four"],
+    //     correct: "Four",
+    // },
+    // {
+    //     question: "In which territory is Mance Rayder recognized as king?",
+    //     answers: ["King's Landing", "Westeros", "House Tyrell", "Beyond the Wall"],
+    //     correct: "Beyond the Wall",
+    // },
         
 ];
 
@@ -102,6 +102,8 @@ function stop() {
 //function to display the question 
 //display choices onto the page, under each question 
 var counter=0;
+var userChoice;
+
 function showQuestion() {
     $("#game-question").html("<p>" + quizQuestions[counter].question + "</p>")
     console.log (quizQuestions[counter].question)
@@ -109,18 +111,19 @@ function showQuestion() {
     for (var i=0; i<4; i++){
         var choices = $("<button>");
         choices.text(quizQuestions[counter].answers[i]);
-        //set an attribute referencing index position within the array
-        choices.attr({"data-index":i});
+            //set an attribute referencing index position within the array
+        choices.attr("data-index",i);
+        console.log(choices);
         choices.addClass("select")
         $("#game-answers").append(choices);
     }
 
+    
 //clicking on button to stop timer 
 //show answer page
-    $("#game-answers").on("click", function(){
-        userChoice = $(this).data("index")
-        console.log (userChoice);
-        clearInterval(intervalId);
+    $("#game-answers").on("click", "button", function(){
+        userChoice = $(this).attr("data-index");
+        console.log ("UserChoice", userChoice);
         stop();
         showAnswer();
     })
@@ -130,11 +133,15 @@ function showQuestion() {
 //---------WHETHER CLICK WAS CORRECT OR INCORRECT ----------
 // when timer = 0secs or when done button is clicked 
 // returns the correct, incorrect and unanswered counts to the page 
+
+
 function showAnswer() {
     $("#time-left").hide();
     $("#game-question").hide();
     $("#game-answers").hide();
     var rightAns = quizQuestions[counter].correct;
+    console.log ("right answer:", rightAns);
+    // console.log(this.userChoice_global);
     if (userChoice == rightAns) {
         correct++;
         $(".message").html("That's Correct!");
