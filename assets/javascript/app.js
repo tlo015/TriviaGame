@@ -80,7 +80,7 @@ var seconds;
 function startTimer() {
     seconds = 15;
     $("#time-left").html("<p>Time remaining: " + seconds + " secs </p>")
-    intervalId = setInterval (decrement,500);
+    intervalId = setInterval (decrement,1000);
 }
 
 //timer countdown function 
